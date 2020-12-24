@@ -17,7 +17,7 @@ public class Matrices {
     public static void main(String[] args) {
         // TODO code application logic here
          Matrices mt=new Matrices(); 
-         mt.ia.imprimirMatriz(mt.transformada14(5, 0));
+         mt.ia.imprimirMatriz(mt.transformada33(5, 0));
     }
     
     impArr ia=new impArr();
@@ -149,18 +149,18 @@ public int[][] transformada07(int dimen, int numInit){
 
 public int[][] transformada08(int dimen, int numInit){
     int[][] matriz=new int[dimen][dimen];
-    int contador=matriz.length-1;
+    
     for(int fila=0; fila<matriz.length;fila++){ //4
-        for(int columna=0; columna<=matriz[0].length-1;columna++){ //matriz[0].length-1
+        for(int columna=0; columna<matriz.length;columna++){ //matriz[0].length-1
             if(columna>=fila){                            
                 matriz[fila][columna]= numInit;                                                                
                 numInit++;
-                contador++;
+                
             }else{
                matriz[fila][columna]=-1; 
             }
         }
-        contador=matriz.length-1;
+        
     }
     return matriz;
 }
@@ -438,6 +438,81 @@ public int[][] transformada29(int dimen, int numInit){
         matriz[dimen/2][dimen/2]=numInit;
     }
 
+    return matriz;
+}
+
+public int[][] transformadaM(){
+    int f=4;
+    int [][] matriz = {{40,2,4},{6,8,10},{2,5,3}};
+    
+     for(int fila=0; fila<matriz.length;fila++){
+        for(int columna=0; columna>=matriz[fila].length-1;columna++){
+           matriz[fila][columna]*=f;
+           System.out.println("h");
+        }
+       
+       }   
+    return matriz;
+}
+
+
+public int[][] transformada33(int dimen, int numInit){
+    int[][] matriz=new int[dimen][dimen];
+    for(int v=0; v<dimen/2; v++){
+        for(int ls=dimen-v-1;ls>v; ls--){
+            matriz[v][ls]=numInit;
+            numInit++;            
+        }
+        for(int ld=v;ld<dimen-1-v; ld++){
+            matriz[ld][v]=numInit;
+            numInit++;            
+        }        
+        for(int li=v;li<dimen-1-v; li++){ //dimen-1-v
+            matriz[dimen-1-v][li]=numInit;
+            numInit++;            
+        }  
+        for(int liz=dimen-1-v;liz>v; liz--){
+            matriz[liz][dimen-v-1]=numInit;
+            numInit++;            
+        }              
+    }
+    if(dimen%2!=0){
+        matriz[dimen/2][dimen/2]=numInit;
+    }
+
+    return matriz;
+}
+
+public int[][] sum(){
+    
+    int [][] m1 = {{1,2,4},{6,8,10},{2,5,3}};
+    int [][] m2 = {{1,6,2},{2,8,5},{4,10,3}};
+    int [][] suma= new int [3][3];
+     for (int x=0; x < m1.length; x++) {
+         for (int y=0; y < m1[x].length; y++) {				
+         suma[x][y]=m1[x][y]+m2[x][y];								
+    }
+    }
+    return suma;
+}
+
+
+public int[][] transformada28(int dimen, int numInit){
+    int[][] matriz=new int[dimen][dimen];
+    int columna=0;
+    for(int fila=matriz[0].length-1; fila>=0;fila--){
+        if(columna!=matriz.length){
+            for(columna=0; columna<matriz.length;columna++){
+                matriz[fila][columna]=numInit;
+                numInit++;
+            }
+        }else{
+            for(columna=matriz.length-1; columna>=0;columna--){
+                matriz[fila][columna]=numInit;
+                numInit++;
+            }            
+        }        
+    }
     return matriz;
 }
 
